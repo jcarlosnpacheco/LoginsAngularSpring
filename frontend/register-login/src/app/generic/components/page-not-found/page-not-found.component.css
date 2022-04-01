@@ -1,0 +1,28 @@
+.mat-card-not-found {
+  margin: 20px 20px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.icon-display {
+  transform: scale(2);
+}
+
+mat-card {
+  width: 50%;
+}
+
+.ops {
+  margin-left: 20px;
+}

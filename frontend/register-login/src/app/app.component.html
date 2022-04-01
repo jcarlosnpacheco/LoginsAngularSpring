@@ -1,0 +1,36 @@
+<app-toolbar (openCloseMenu)="openCloseMenu()"> </app-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    *ngIf="menuOpened && isLogged$"
+    class="sidenav"
+    fixedInViewport
+    [mode]="'side'"
+    [opened]="true"
+  >
+    <mat-nav-list class="nav-list__container">
+      <!--<ng-container *ngFor="let menuItem of menuItems">
+      </ng-container>-->
+      <a mat-list-item [routerLink]="'registerLogin'">
+        <mat-icon> drag_indicator </mat-icon> Register Login
+      </a>
+      <div *ngIf="isAdmin">
+        <a mat-list-item [routerLink]="'users'">
+          <mat-icon> account_circle </mat-icon> Users
+        </a>
+      </div>
+      <a mat-list-item [routerLink]="'logout'">
+        <mat-icon> logout </mat-icon> Logout
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div
+      *ngIf="loaderService.isLoading | async"
+      class="loader-container uploader-status"
+    >
+      <mat-spinner></mat-spinner>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

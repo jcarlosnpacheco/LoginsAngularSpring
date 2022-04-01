@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="mat-elevation-z3">
+  <button
+    *ngIf="isLogged$ | async"
+    mat-icon-button
+    (click)="openCloseMenu.emit()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div fxLayout="column">
+    <span class="title" fxHide.xs>Register Login System</span>
+    <span class="subtitle" fxHide.xs>Easily save your logins!</span>
+  </div>
+
+  <span fxFlex></span>
+  <div *ngIf="isLogged$ | async">
+    <span>Session end in: {{ timeLeftInSeconds | formatTime }}</span>
+  </div>
+
+  <button
+    mat-icon-button
+    *ngIf="isLogged$ | async"
+    mat-flat-button
+    color="primary"
+    matTooltip="Logout application"
+    (click)="logoff()"
+  >
+    <mat-icon class="material-icons-round">logout</mat-icon>
+  </button>
+</mat-toolbar>

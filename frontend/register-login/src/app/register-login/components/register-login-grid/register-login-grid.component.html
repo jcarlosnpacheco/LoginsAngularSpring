@@ -1,0 +1,177 @@
+<div fxLayout="row">
+  <div class="col">
+    <div class="title-page"></div>
+    <mat-card-header class="full-width">
+      <mat-card-title>Register Login</mat-card-title>
+    </mat-card-header>
+  </div>
+</div>
+
+<form
+  #formSearchRegister="ngForm"
+  [formGroup]="searchRegisterForm"
+  style="display: inline-table"
+>
+  <mat-card class="search-register-card">
+    <div
+      class="row margin-left"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayout.md="column"
+    >
+      <div class="col">
+        <mat-form-field class="full-width">
+          <mat-label>Type to search by Login Name Or Observation...</mat-label>
+          <input
+            matInput
+            formControlName="registerLoginName"
+            class="form-control"
+            placeholder="Type to search by Login Name Or Observation..."
+            #registerLoginName
+            appUppercase
+            required
+          />
+          <mat-error
+            *ngIf="
+              searchRegisterForm.controls['registerLoginName'].hasError(
+                'required'
+              )
+            "
+          >
+            Register's login name <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div
+      class="row margin-left"
+      fxLayout="row"
+      fxLayout.xs="column"
+      fxLayout.sm="column"
+      fxLayout.md="column"
+    >
+      <div class="col full-width">
+        <button
+          matTooltip="Search all login records that contain the characters entered"
+          mat-raised-button
+          class="color-button-pesquisar button-margin-botton button-margin-right yellow-button"
+          (click)="searchRegisterLogin(registerLoginName.value)"
+        >
+          Search
+        </button>
+        <button
+          type="reset"
+          matTooltip="Clear search field"
+          mat-raised-button
+          color="warm"
+          class="button-margin-botton button-margin-right"
+          (click)="clear(formSearchRegister)"
+        >
+          Clear
+        </button>
+        <button
+          mat-raised-button
+          matTooltip="Add new register"
+          color="primary"
+          class="button-margin-botton button-margin-right"
+          (click)="createRegister()"
+        >
+          New Register Login
+        </button>
+      </div>
+      <div flex-end>
+        <button
+          type="button"
+          mat-mini-fab
+          color="warm"
+          matTooltip="Hide password"
+          class="button-margin-botton"
+          (click)="hidePass()"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</form>
+<div class="margin-left" fxLayout="row">
+  <div class="col">
+    <div>
+      <p><strong>For best fit use landscape mode</strong></p>
+    </div>
+    <div class="mat-elevation-z8 grid-width">
+      <table mat-table [dataSource]="dataSource" class="full-width" matSort>
+        <ng-container matColumnDef="LoginName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Login Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.loginName }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Password">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Password</th>
+          <td
+            [ngClass]="hide ? 'hidetext' : 'showtext'"
+            mat-cell
+            *matCellDef="let element"
+          >
+            {{ element.password }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Observation">
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            mat-sort-header
+            class="mat-column-obs"
+          >
+            Observation
+          </th>
+          <td mat-cell *matCellDef="let element" class="mat-column-obs">
+            {{ element.observation }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Action">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              matTooltip="{{ 'Change record ' + element.loginName }}"
+              routerLink="/registerLogin/update/{{ element.id }}"
+            >
+              <mat-icon class="edit-icon">edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="{{ 'Delete record ' + element.loginName }}"
+              (click)="deleteRecord(element)"
+            >
+              <mat-icon class="delete-icon">delete</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              matTooltip="Copy password to clipboard"
+              [cdkCopyToClipboard]="getPassCopied(element)"
+            >
+              <mat-icon>file_copy</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No records...</td>
+        </tr>
+      </table>
+      <mat-paginator
+        [pageSizeOptions]="[10, 30, 50, 100]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

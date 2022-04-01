@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.edit-icon {
+  color: #d9cd26;
+}
+
+.delete-icon {
+  color: #e35e6b;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-margin-right {
+  margin-right: 5px !important;
+}
+
+.yellow-button {
+  background-color: #f7e017;
+}
+
+@media only screen and (orientation: portrait) {
+  #wrapper {
+    width: 1024px;
+    height: auto;
+  }
+}
+
+@media only screen and (orientation: landscape) {
+  #wrapper {
+    width: 1024px;
+    height: auto;
+  }
+}
+
+/*force break word grid*/
+td,
+th {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100px;
+  padding-right: 10px !important;
+}

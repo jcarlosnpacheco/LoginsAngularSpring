@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{ title }}</h1>
+
+<div mat-dialog-content *ngFor="let validationMessage of validationsMessage">
+  <p class="mat-body-1">{{ validationMessage.message }}</p>
+</div>
+
+<div fxLayout fxLayoutAlign="end" mat-dialog-actions>
+  <button fxflex mat-button [mat-dialog-close]="true">
+    {{ confirmText }}
+  </button>
+</div>

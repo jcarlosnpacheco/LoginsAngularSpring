@@ -1,0 +1,39 @@
+.content {
+  margin-top: 80px;
+}
+
+.sidenav-container {
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.nav-list__container {
+  padding-top: 64px;
+}
+
+.loader-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: whitesmoke;
+  opacity: 0.7;
+  z-index: 99;
+}
+
+.mat-spinner {
+  top: 40%;
+  left: 45%;
+}
+
+.uploader-status ::ng-deep .mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: #02681b;
+}

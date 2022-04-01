@@ -1,0 +1,102 @@
+<form #formRegisterLogin="ngForm" [formGroup]="registerLoginForm">
+  <mat-card class="title-card">
+    <mat-card-header>
+      <mat-card-title>{{ titlePage }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div fxLayout>
+        <div class="col full-width">
+          <mat-form-field [style.width.px]="220">
+            <input
+              matInput
+              placeholder="Type Login Name..."
+              formControlName="loginName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                registerLoginForm.controls['loginName'].hasError('required')
+              "
+            >
+              Login Name <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                registerLoginForm.controls['loginName'].hasError('maxlength')
+              "
+            >
+              Must have until <strong>50 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col full-width">
+          <mat-form-field [style.width.px]="220">
+            <input
+              required
+              matInput
+              placeholder="Type password..."
+              formControlName="password"
+            />
+            <mat-error
+              *ngIf="
+                registerLoginForm.controls['password'].hasError('required')
+              "
+            >
+              Password <strong>required</strong>
+            </mat-error>
+            <mat-error
+              *ngIf="
+                registerLoginForm.controls['password'].hasError('maxlength')
+              "
+            >
+              Must have until <strong>1000 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col full-width">
+          <mat-form-field [style.width.px]="220">
+            <textarea
+              required
+              matInput
+              placeholder="Type obs..."
+              formControlName="observation"
+            ></textarea>
+            <mat-error
+              *ngIf="
+                registerLoginForm.controls['observation'].hasError('maxlength')
+              "
+            >
+              Must have until <strong>1000 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <div fxLayout>
+      <div class="full-width">
+        <button
+          matTooltip="Cancel the operation, back previos page"
+          mat-raised-button
+          class="button-margin-right yellow-button"
+          (click)="onCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          type="reset"
+          class="button-margin-right"
+          matTooltip="Clear fields"
+          mat-raised-button
+          color="warm"
+          (click)="onReset(formRegisterLogin)"
+        >
+          Clear
+        </button>
+
+        <button mat-raised-button color="primary" (click)="onSubmit()">
+          {{ submitButton }}
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</form>

@@ -1,0 +1,43 @@
+.mat-icon-button {
+  width: 30px;
+}
+
+.margin-left {
+  margin-left: 20px;
+}
+
+.title-page {
+  margin-top: 20px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-label {
+    width: 80px;
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  .mat-header-row {
+    display: none;
+  }
+
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+    padding: 8px 35px;
+  }
+}
+
+.grid-width {
+  display: inline-table;
+  width: 100%;
+}
